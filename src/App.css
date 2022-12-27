@@ -1,41 +1,243 @@
 #root {
-  max-width: 1280px;
+   /* max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  text-align: center; */
+   width: 100%;
+}
+
+.App {
+   width: 100%;
+   max-width: 900px;
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   gap: 40px;
+}
+
+.board {
+   background: var(--theme-color);
+   border-radius: 8px;
+   filter: drop-shadow(0 8px 8px rgba(255, 255, 255, 0.3));
+}
+
+.board.configure {
+   width: 100%;
+   height: 60px;
+   padding: 0 40px;
+   display: flex;
+   align-items: center;
+   gap: 24px;
+}
+
+.colorButtons {
+   display: flex;
+   gap: 8px;
+}
+.colorButton {
+   cursor: pointer;
+   width: 24px;
+   height: 24px;
+   background: #000;
+   border-radius: 50%;
+   box-shadow: inset 2px 3px 7px rgba(255, 255, 255, 0.3);
+   filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.06));
+}
+
+.paddingConfigs {
+   display: flex;
+   gap: 16px;
+}
+.paddingSlider {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+.paddingSlider p {
+   text-transform: uppercase;
+}
+.slider {
+   -webkit-appearance: none;
+   appearance: none;
+   cursor: pointer;
+   outline: none;
+   height: 5px;
+   background: var(--base-color);
+   border-radius: 10px;
+   width: 80px;
+}
+.slider::-webkit-slider-thumb {
+   -webkit-appearance: none;
+   background: var(--touch-color);
+   width: 12px;
+   height: 12px;
+   border-radius: 50%;
+}
+.toggleSwitch {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   user-select: none;
+}
+.toggleWrapper {
+   position: relative;
+   display: inline-block;
+   width: 32px;
+   height: 16px;
+}
+.toggleInput {
+   opacity: 0;
+   width: 0;
+   height: 0;
+}
+.toggleVirtual {
+   position: absolute;
+   cursor: pointer;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: transparent;
+   -webkit-transition: 0.4s;
+   transition: 0.4s;
+   border-radius: 16px;
+   border: 2px solid var(--base-color);
+}
+.toggleVirtual:before {
+   position: absolute;
+   content: '';
+   height: 12px;
+   width: 12px;
+   left: 0;
+   bottom: 0;
+   background-color: var(--touch-color);
+   -webkit-transition: 0.4s;
+   transition: 0.4s;
+   border-radius: 50%;
+}
+
+.toggleInput:checked + .toggleVirtual {
+   background-color: var(--base-color);
+}
+
+.toggleInput:focus + .toggleVirtual {
+   box-shadow: 0 0 1px var(--base-color);
+}
+
+.toggleInput:checked + .toggleVirtual:before {
+   -webkit-transform: translateX(16px);
+   -ms-transform: translateX(16px);
+   transform: translateX(16px);
+}
+
+.board.screen {
+   width: 100%;
+   height: 400px;
+   display: grid;
+   place-items: center;
+   position: relative;
+}
+
+.board.screen [type="file"] {
+   position: absolute;
+   top: -15px;
+   left: -15px;
+   bottom: -15px;
+   right: -15px;
+   cursor: pointer;
+   opacity: 0;
+}
+
+.fileInputField {
+   width: 65%;
+   height: 65%;
+   position: relative;
+   border-radius: 15px;
+   border: 15px var(--text-color) dashed;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   gap: 24px;
+   fill: var(--text-color);
+}
+
+.fileInputField::before {
+   content: '';
+   border-radius: 8px;
+   position: absolute;
+   top: -6px;
+   right: -6px;
+   bottom: -6px;
+   left: -6px;
+   /* width: 100%;
+   height: 100%; */
+   pointer-events: none;
+   border: 7px var(--theme-color) solid;
+}
+
+.previewField {
+   padding: 10px;
+   width: 100%;
+   height: 100%;
+}
+.previewField .wrapper {
+   background: #ddd;
+   border-radius: 8px;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.userScreenshot {
+   border-radius: 8px;
+   width: 80%;
+}
+
+.board.share {
+   height: 60px;
+   display: flex;
+   padding: 0 40px;
+   display: flex;
+   align-items: center;
+   gap: 40px;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+   height: 6em;
+   padding: 1.5em;
+   will-change: filter;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+   filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+   from {
+      transform: rotate(0deg);
+   }
+   to {
+      transform: rotate(360deg);
+   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+   a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
+   }
 }
 
 .card {
-  padding: 2em;
+   padding: 2em;
 }
 
 .read-the-docs {
-  color: #888;
+   color: #888;
 }
